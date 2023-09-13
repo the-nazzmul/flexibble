@@ -1,5 +1,4 @@
 import { g, auth, config } from "@grafbase/sdk";
-import { use } from "react";
 
 const User = g.model("User", {
   name: g.string().length({ min: 2, max: 20 }),
@@ -8,7 +7,10 @@ const User = g.model("User", {
   description: g.string(),
   githubUrl: g.url().optional(),
   linkedInUrl: g.url().optional(),
-  projects: g.relation(()=> Projects).list().optional(),
+  projects: g
+    .relation(() => Projects)
+    .list()
+    .optional(),
 });
 
 const Projects = g.model("Project", {
